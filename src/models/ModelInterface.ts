@@ -14,8 +14,8 @@ abstract class MongoModel<T> implements Model<T> {
     this.model.findOne({ _id: id }));
 
   update = async (id: string, obj: T): Promise<T | null> => {
-    const result = this.readOne(id);
     this.model.updateOne({ id, obj });
+    const result = this.readOne(id);
     return result;
   };
 
