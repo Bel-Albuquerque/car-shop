@@ -9,7 +9,6 @@ type returnType = Car & Document<any, any, any> & { _id: any; }
 
 describe('Rota /cars', () => {
   let carModel = new CarModel();
-  let carService = new CarService(carModel);
 
   before(() => {
     sinon
