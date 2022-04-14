@@ -58,3 +58,13 @@ export const editedObj = {
   seatsQty: 4,
   doorsQty: 4
 };
+
+export const wrongObjectToCreation = {
+  _id: "4edd40c86762e0fb12000003",
+  model: "it",
+  year: 3000,
+  color: "blue",
+  buyValue: 9500,
+  seatsQty: 16,
+  doorsQty: 74
+}
