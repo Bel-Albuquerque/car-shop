@@ -21,7 +21,7 @@ abstract class Controller<T> {
 
   protected errors = ControllerErrors;
 
-  constructor(protected service: Service<T>) { }
+  constructor(public service: Service<T>) { }
 
   abstract create(
     req: RequestWithBody<T>,
