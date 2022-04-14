@@ -54,14 +54,15 @@ describe('testa camada Model carModel', () => {
 
   it('testa se o método findOne do CarModel está implementado da maneira correta', async () => {
     const mockCar = await carModel.readOne('4edd40c86762e0fb12000003');
+    const { model, year, color, buyValue, seatsQty, doorsQty } = mockCar as returnType
 
     expect(mockCar).to.be.an('object');
-    // expect(mockCar.model).to.be.equal('Fiat Uno');
-    // expect(mockCar.year).to.be.equal(1963);
-    // expect(mockCar.color).to.be.equal('blue');
-    // expect(mockCar.buyValue).to.be.equal(3500);
-    // expect(mockCar.seatsQty).to.be.equal(4);
-    // expect(mockCar.doorsQty).to.be.equal(4);
+    expect(model).to.be.equal('Fiat Uno');
+    expect(year).to.be.equal(1963);
+    expect(color).to.be.equal('blue');
+    expect(buyValue).to.be.equal(3500);
+    expect(seatsQty).to.be.equal(4);
+    expect(doorsQty).to.be.equal(4);
   })
 
 });
@@ -84,14 +85,15 @@ describe('testa camada Model carModel', () => {
 
   it('testa se o método update do CarModel está implementado da maneira correta', async () => {
     const mockCar = await carModel.update('4edd40c86762e0fb12000003', editedObj);
+    const { model, year, color, buyValue, seatsQty, doorsQty } = mockCar as returnType
 
     expect(mockCar).to.be.an('object');
-    // expect(mockCar.model).to.be.equal('honda fit');
-    // expect(mockCar.year).to.be.equal(2000);
-    // expect(mockCar.color).to.be.equal('blue');
-    // expect(mockCar.buyValue).to.be.equal(9500);
-    // expect(mockCar.seatsQty).to.be.equal(4);
-    // expect(mockCar.doorsQty).to.be.equal(4);
+    expect(model).to.be.equal('honda fit');
+    expect(year).to.be.equal(2000);
+    expect(color).to.be.equal('blue');
+    expect(buyValue).to.be.equal(9500);
+    expect(seatsQty).to.be.equal(4);
+    expect(doorsQty).to.be.equal(4);
   })
 });
 
@@ -114,13 +116,14 @@ describe('testa camada Model carModel', () => {
 
   it('testa se o método delete do CarModel está implementado da maneira correta', async () => {
     const mockCar = await carModel.delete('4edd40c86762e0fb12000003');
+    const { model, year, color, buyValue, seatsQty, doorsQty } = mockCar as returnType
 
     expect(mockCar).to.be.an('object');
-    // expect(mockCar.model).to.be.equal('honda fit');
-    // expect(mockCar.year).to.be.equal(2000);
-    // expect(mockCar.color).to.be.equal('blue');
-    // expect(mockCar.buyValue).to.be.equal(9500);
-    // expect(mockCar.seatsQty).to.be.equal(4);
-    // expect(mockCar.doorsQty).to.be.equal(4);
+    expect(model).to.be.equal('honda fit');
+    expect(year).to.be.equal(2000);
+    expect(color).to.be.equal('blue');
+    expect(buyValue).to.be.equal(9500);
+    expect(seatsQty).to.be.equal(4);
+    expect(doorsQty).to.be.equal(4);
   })
 });
