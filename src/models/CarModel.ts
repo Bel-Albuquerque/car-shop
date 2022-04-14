@@ -12,7 +12,8 @@ const carSchema = new Schema<CarDocument>({
   buyValue: String,
   doorsQty: Number,
   seatsQty: Number,
-});
+}, {
+  versionKey: false });
 
 class CarModel extends MongoModel<Car> {
   constructor(model = createModel('Car', carSchema)) {
