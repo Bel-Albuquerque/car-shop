@@ -1,3 +1,5 @@
+import { Types } from 'mongoose';
+
 export const createCar = {
   "model": "Feretertrrari Maranello",
   "year": 1993,
@@ -15,5 +17,34 @@ export const createdCar = {
   "doorsQty": 2,
   "seatsQty": 2,
   "_id": "6254f09f1549daf7cec1035f",
-  "__v": 0
 }
+
+export const allCars = [
+  {
+    _id: new Types.ObjectId(),
+    model: 'Uno da Escada',
+    year: 1963,
+    color: 'blue',
+    buyValue: 3500,
+    seatsQty: 4,
+    doorsQty: 4,  },
+  {
+    _id: new Types.ObjectId(),
+    model: 'ferrari',
+    year: 1999,
+    color: 'red',
+    buyValue: 300500,
+    seatsQty: 2,
+    doorsQty: 2
+  }
+]
+
+export const validCar = {
+  _id: new Types.ObjectId(),
+  model: 'Uno da Escada',
+  year: 1963,
+  color: 'red',
+  buyValue: 3500,
+  seatsQty: 2,
+  doorsQty: 2
+};
