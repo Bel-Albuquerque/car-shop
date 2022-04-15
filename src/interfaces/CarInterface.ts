@@ -7,3 +7,7 @@ export const CarInterface = VehicleInterface.extend({
 });
 
 export type Car = z.infer<typeof CarInterface>;
+
+export interface ICar extends Car {
+  _id: string
+}
