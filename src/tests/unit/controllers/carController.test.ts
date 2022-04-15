@@ -90,7 +90,7 @@ describe('testa camada Controller CarController', () => {
   it('testa se o método read do CarController está implementado da maneira correta', async () => {
    await carController.read(request, response);
 
-    expect(response.status.calledWith(201)).to.be.equal(true);
+    expect(response.status.calledWith(200)).to.be.equal(true);
     expect((response.json).calledWith(allCars)).to.be.equal(true);
   });
 
@@ -118,7 +118,7 @@ describe('testa camada Controller CarController', () => {
   it('testa se o método readOne do CarController está implementado da maneira correta', async () => {
    await carController.readOne(request, response);
 
-    expect(response.status.calledWith(201)).to.be.equal(true);
+    expect(response.status.calledWith(200)).to.be.equal(true);
     expect((response.json).calledWith(findOneCar)).to.be.equal(true);
   });
 
