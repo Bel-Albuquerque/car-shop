@@ -6,7 +6,7 @@ import { idMustHave24Characters, NotFound } from '../erros/erroMessages';
 import StatusCode from '../interfaces/StatusCode';
 
 const { 
-  OK, CREATED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
+  OK, CREATED, NO_CONTENT, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
 
 export default class CarController extends Controller<Car> {
   private $route: string;
@@ -81,7 +81,7 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.delete(id);
       return recordStore
-        ? res.status(CREATED).json(recordStore)
+        ? res.status(NO_CONTENT).json(recordStore)
         : res.status(NOT_FOUND).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR)
