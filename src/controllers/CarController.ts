@@ -40,8 +40,9 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.readOne(id);
       return recordStore
-        ? res.status(201).json(recordStore)
-        : res.status(404).json({ error: this.errors.notFound });
+        ? res.status(200).json(recordStore)
+        : res.status(404)
+          .json({ error: 'Id must have 24 hexadecimal characters' });
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
     }
