@@ -34,7 +34,7 @@ abstract class Controller<T> {
   ): Promise<typeof res> => {
     try {
       const objs = await this.service.read();
-      return res.json(objs);
+      return res.status(201).json(objs);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
     }
@@ -46,7 +46,7 @@ abstract class Controller<T> {
   ): Promise<typeof res>;
 
   abstract update(
-    req: Request<{ obj: T }>,
+    req: RequestWithBody<T>,
     res: Response<T | ResponseError>,
   ): Promise<typeof res>;
 
