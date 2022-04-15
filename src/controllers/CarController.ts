@@ -2,6 +2,11 @@ import { Request, Response } from 'express';
 import Controller, { RequestWithBody, ResponseError } from '.';
 import CarService from '../services/CarService';
 import { Car, ICar } from '../interfaces/CarInterface';
+import { idMustHave24Characters, NotFound } from '../erros/erroMessages';
+import StatusCode from '../interfaces/StatusCode';
+
+const { 
+  OK, CREATED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
 
 export default class CarController extends Controller<Car> {
   private $route: string;
@@ -24,11 +29,11 @@ export default class CarController extends Controller<Car> {
     try {
       const car = await this.service.create(body);
       if (!car || 'error' in car) {
-        return res.status(400).json({ error: this.errors.internal });
+        return res.status(BAD_REQUEST).json({ error: this.errors.internal });
       }
-      return res.status(201).json(car);
+      return res.status(CREATED).json(car);
     } catch (err) {
-      return res.status(400).json({ error: this.errors.internal });
+      return res.status(BAD_REQUEST).json({ error: this.errors.internal });
     }
   };
 
@@ -40,11 +45,12 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.readOne(id);
       return recordStore
-        ? res.status(200).json(recordStore)
-        : res.status(404)
-          .json({ error: 'Id must have 24 hexadecimal characters' });
+        ? res.status(OK).json(recordStore)
+        : res.status(NOT_FOUND)
+          .json(NotFound);
     } catch (error) {
-      return res.status(500).json({ error: this.errors.internal });
+      return res.status(BAD_REQUEST)
+        .json(idMustHave24Characters);
     }
   };
 
@@ -56,12 +62,12 @@ export default class CarController extends Controller<Car> {
     try {
       const result = await this.service.update(body._id, body);
       if (!result) {
-        return res.status(404)
+        return res.status(NOT_FOUND)
           .json({ error: this.errors.notFound });
       }
-      return res.status(201).json(result);
+      return res.status(CREATED).json(result);
     } catch (err) {
-      return res.status(500)
+      return res.status(INTERNAL_SERVER_ERROR)
         .json({ error: this.errors.internal });
     }
   };
@@ -74,10 +80,11 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.delete(id);
       return recordStore
-        ? res.status(201).json(recordStore)
-        : res.status(404).json({ error: this.errors.notFound });
+        ? res.status(CREATED).json(recordStore)
+        : res.status(NOT_FOUND).json({ error: this.errors.notFound });
     } catch (error) {
-      return res.status(500).json({ error: this.errors.internal });
+      return res.status(INTERNAL_SERVER_ERROR)
+        .json({ error: this.errors.internal });
     }
   };
 }
