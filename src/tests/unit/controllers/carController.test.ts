@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 const {
-OK, CREATED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
+OK, CREATED, NO_CONTENT, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
 
 
 
@@ -258,7 +258,7 @@ describe('testa camada Controller CarController', () => {
   it('testa se o método delete do CarController está implementado da maneira correta', async () => {
    await carController.delete(request, response);
 
-    expect(response.status.calledWith(CREATED)).to.be.equal(true);
+    expect(response.status.calledWith(NO_CONTENT)).to.be.equal(true);
     expect((response.json).calledWith(findOneCar)).to.be.equal(true);
   });
 });
