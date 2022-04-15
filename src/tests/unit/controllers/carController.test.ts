@@ -158,6 +158,7 @@ describe('testa camada Controller CarController', () => {
   
   before(async () => {
     request.body = editedObj;
+    request.params = "4edd40c86762e0fb12000003"
     
     response.status = sinon.stub().returns(response);
     response.json = sinon.stub();
@@ -174,7 +175,7 @@ describe('testa camada Controller CarController', () => {
   it('testa se o método update do CarController está implementado da maneira correta', async () => {
    await carController.update(request, response);
 
-   expect((response.status).calledWith(CREATED)).to.be.equal(true);
+   expect((response.status).calledWith(OK)).to.be.equal(true);
    expect((response.json).calledWith(editedObj)).to.be.equal(true);
   });
 });
@@ -187,6 +188,7 @@ describe('testa camada Controller CarController', () => {
   
   before(async () => {
     request.body = wrongObjectToCreation;
+    request.params = "4edd40c86762e0fb12000003"
     
     response.status = sinon.stub().returns(response);
     response.json = sinon.stub();
@@ -199,7 +201,7 @@ describe('testa camada Controller CarController', () => {
   it('testa se o método update do CarController retorna erro, caso o body seja invalido', async () => {
    await carController.update(request, response);
 
-   expect((response.status).calledWith(INTERNAL_SERVER_ERROR)).to.be.equal(true);
+   expect((response.status).calledWith(BAD_REQUEST)).to.be.equal(true);
    expect((response.json).getCall(0).args[0]).to.have.property('error');
   });
 });
@@ -211,7 +213,8 @@ describe('testa camada Controller CarController', () => {
   const response = {} as any;
   
   before(async () => {
-    request.body = editedObj;
+    request.body = {};
+    request.params = "4edd40c86762e0fb12000003"
 
     response.status = sinon.stub().returns(response);
     response.json = sinon.stub();
