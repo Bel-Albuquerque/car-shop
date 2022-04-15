@@ -55,20 +55,21 @@ export default class CarController extends Controller<Car> {
   };
 
   update = async (
-    req: RequestWithBody<ICar>,
+    req: RequestWithBody<Car>,
     res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
+    const { id } = req.params;
     const { body } = req;
     try {
-      const result = await this.service.update(body._id, body);
+      const result = await this.service.update(id, body);
       if (!result) {
         return res.status(NOT_FOUND)
-          .json({ error: this.errors.notFound });
+          .json(NotFound);
       }
-      return res.status(CREATED).json(result);
+      return res.status(OK).json(result);
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR)
-        .json({ error: this.errors.internal });
+      return res.status(BAD_REQUEST)
+        .json(idMustHave24Characters);
     }
   };
 
