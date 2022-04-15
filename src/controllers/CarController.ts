@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Controller, { RequestWithBody, ResponseError } from '.';
 import CarService from '../services/CarService';
-import { Car, ICar } from '../interfaces/CarInterface';
+import { Car } from '../interfaces/CarInterface';
 import { idMustHave24Characters, NotFound } from '../erros/erroMessages';
 import StatusCode from '../interfaces/StatusCode';
 
