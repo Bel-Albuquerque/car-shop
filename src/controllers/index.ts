@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Service from '../services';
+import StatusCode from '../interfaces/StatusCode';
 
 export type ResponseError = {
   error: unknown;
@@ -8,6 +9,9 @@ export type ResponseError = {
 export interface RequestWithBody<T> extends Request {
   body: T;
 }
+
+const { 
+  OK, INTERNAL_SERVER_ERROR } = StatusCode;
 
 enum ControllerErrors {
   internal = 'Internal Server Error',
@@ -34,9 +38,10 @@ abstract class Controller<T> {
   ): Promise<typeof res> => {
     try {
       const objs = await this.service.read();
-      return res.status(200).json(objs);
+      return res.status(OK).json(objs);
     } catch (err) {
-      return res.status(500).json({ error: this.errors.internal });
+      return res.status(INTERNAL_SERVER_ERROR)
+        .json({ error: this.errors.internal });
     }
   };
 
