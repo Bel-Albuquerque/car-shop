@@ -9,7 +9,7 @@ const carSchema = new Schema<CarDocument>({
   year: Number,
   color: String,
   status: Boolean,
-  buyValue: String,
+  buyValue: Number,
   doorsQty: Number,
   seatsQty: Number,
 }, {
