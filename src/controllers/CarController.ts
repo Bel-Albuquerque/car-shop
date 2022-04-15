@@ -6,7 +6,12 @@ import { idMustHave24Characters, NotFound } from '../erros/erroMessages';
 import StatusCode from '../interfaces/StatusCode';
 
 const { 
-  OK, CREATED, NO_CONTENT, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR } = StatusCode;
+  OK,
+  CREATED,
+  NO_CONTENT,
+  BAD_REQUEST,
+  NOT_FOUND,
+  INTERNAL_SERVER_ERROR } = StatusCode;
 
 export default class CarController extends Controller<Car> {
   private $route: string;
