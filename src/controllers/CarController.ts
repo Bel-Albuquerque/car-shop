@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Controller, { RequestWithBody, ResponseError } from '.';
 import CarService from '../services/CarService';
-import { Car } from '../interfaces/CarInterface';
+import { Car, ICar } from '../interfaces/CarInterface';
 
 export default class CarController extends Controller<Car> {
   private $route: string;
@@ -40,7 +40,7 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.readOne(id);
       return recordStore
-        ? res.json(recordStore)
+        ? res.status(201).json(recordStore)
         : res.status(404).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
@@ -48,17 +48,17 @@ export default class CarController extends Controller<Car> {
   };
 
   update = async (
-    req: Request<{ obj: any }>,
+    req: RequestWithBody<ICar>,
     res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
+    const { body } = req;
     try {
-      const { obj } = req.body;
-      const result = await this.service.update(obj.id, obj);
+      const result = await this.service.update(body._id, body);
       if (!result) {
         return res.status(404)
           .json({ error: this.errors.notFound });
       }
-      return res.json(result);
+      return res.status(201).json(result);
     } catch (err) {
       return res.status(500)
         .json({ error: this.errors.internal });
@@ -73,7 +73,7 @@ export default class CarController extends Controller<Car> {
     try {
       const recordStore = await this.service.delete(id);
       return recordStore
-        ? res.json(recordStore)
+        ? res.status(201).json(recordStore)
         : res.status(404).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
