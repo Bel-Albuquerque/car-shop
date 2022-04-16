@@ -48,9 +48,9 @@ export default class CarController extends Controller<Car> {
   ): Promise<typeof res> => {
     const { id } = req.params;
     try {
-      const recordStore = await this.service.readOne(id);
-      return recordStore
-        ? res.status(OK).json(recordStore)
+      const car = await this.service.readOne(id);
+      return car
+        ? res.status(OK).json(car)
         : res.status(NOT_FOUND)
           .json(NotFound);
     } catch (error) {
@@ -84,9 +84,9 @@ export default class CarController extends Controller<Car> {
   ): Promise<typeof res> => {
     const { id } = req.params;
     try {
-      const recordStore = await this.service.delete(id);
-      return recordStore
-        ? res.status(NO_CONTENT).json(recordStore)
+      const result = await this.service.delete(id);
+      return result
+        ? res.status(NO_CONTENT).json(result)
         : res.status(NOT_FOUND).json({ error: this.errors.notFound });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR)
