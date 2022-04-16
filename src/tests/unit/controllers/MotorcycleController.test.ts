@@ -28,7 +28,7 @@ describe('testa camada Controller MotorcycleController', () => {
 
     sinon
       .stub(motorcycleController.service, 'create')
-      .resolves(createdMoto)
+      .resolves(createdMoto as Motorcycle)
   });
 
   after(()=>{
@@ -84,7 +84,7 @@ describe('testa camada Controller MotorcycleController', () => {
 
     sinon
       .stub(motorcycleController.service, 'read')
-      .resolves(allMotos)
+      .resolves(allMotos as Motorcycle[])
   });
 
   after(()=>{
@@ -112,7 +112,7 @@ describe('testa camada Controller MotorcycleController', () => {
 
     sinon
       .stub(motorcycleController.service, 'readOne')
-      .resolves(findOneMoto)
+      .resolves(findOneMoto as Motorcycle)
   });
 
   after(()=>{
@@ -165,7 +165,7 @@ describe('testa camada Controller MotorcycleController', () => {
 
     sinon
       .stub(motorcycleController.service, 'update')
-      .resolves(editedObj)
+      .resolves(editedObj as Motorcycle)
   });
 
   after(()=>{
@@ -248,7 +248,7 @@ describe('testa camada Controller MotorcycleController', () => {
 
     sinon
       .stub(motorcycleController.service, 'delete')
-      .resolves(findOneMoto)
+      .resolves(findOneMoto as Motorcycle)
   });
 
   after(()=>{
