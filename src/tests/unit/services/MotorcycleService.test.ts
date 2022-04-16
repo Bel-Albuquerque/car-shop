@@ -32,7 +32,7 @@ describe('testa camada Service motorcycleService', () => {
   });
 
   it('testa se o método create do MotorcycleService retorna erro quando recebe um objeto que não atende às regras de negócio', async () => {
-    const returnErrorCreateMoto = await motorcycleService.create(wrongObjectToCreation);
+    const returnErrorCreateMoto = await motorcycleService.create(wrongObjectToCreation as Motorcycle);
     
     expect(returnErrorCreateMoto).to.be.an('object');
     expect(returnErrorCreateMoto).to.have.property('error')
@@ -56,10 +56,10 @@ describe('testa camada Service motorcycleService', () => {
     const returnReadMoto = await motorcycleService.read();
 
     expect(returnReadMoto).to.have.lengthOf(2);
-    expect(returnReadMoto[0].model).to.be.equal('Uno da Escada')
-    expect(returnReadMoto[1].model).to.be.equal('ferrari')
-    expect(returnReadMoto[0].color).to.be.equal('blue')
-    expect(returnReadMoto[1].color).to.be.equal('red')
+    expect(returnReadMoto[0].model).to.be.equal('Honda CG Titan 125')
+    expect(returnReadMoto[1].model).to.be.equal('Kawasaki Ninja')
+    expect(returnReadMoto[0].color).to.be.equal('red')
+    expect(returnReadMoto[1].color).to.be.equal('green')
   })
 
 });
@@ -83,9 +83,9 @@ describe('testa camada Service motorcycleService', () => {
     const { model, year, color, buyValue } = returnReadOneMoto as returnType
   
     expect(returnReadOneMoto).to.be.an('object');
-    expect(model).to.be.equal('Fiat Uno');
+    expect(model).to.be.equal('Honda CG Titan 125');
     expect(year).to.be.equal(1963);
-    expect(color).to.be.equal('blue');
+    expect(color).to.be.equal('red');
     expect(buyValue).to.be.equal(3500);
   })
 });
@@ -104,15 +104,15 @@ describe('testa camada Service motorcycleService', () => {
   })
 
   it('testa se o método update do MotorcycleService está implementado da maneira correta', async () => {
-    const returnUpdateMoto = await motorcycleService.update('4edd40c86762e0fb12000003', editedObj);
+    const returnUpdateMoto = await motorcycleService.update('4edd40c86762e0fb12000003', editedObj as Motorcycle);
 
     expect(returnUpdateMoto).to.be.an('object');
     const { model, year, color, buyValue } = returnUpdateMoto as returnType
 
-    expect(model).to.be.equal('honda fit');
-    expect(year).to.be.equal(2000);
-    expect(color).to.be.equal('blue');
-    expect(buyValue).to.be.equal(9500);
+    expect(model).to.be.equal('Honda CG Titan 125');
+    expect(year).to.be.equal(1963);
+    expect(color).to.be.equal('red');
+    expect(buyValue).to.be.equal(3500);
   })
 });
 
@@ -135,9 +135,9 @@ describe('testa camada Service motorcycleService', () => {
     expect(returnDeleteMoto).to.be.an('object');
     const { model, year, color, buyValue } = returnDeleteMoto as returnType
 
-    expect(model).to.be.equal('honda fit');
-    expect(year).to.be.equal(2000);
-    expect(color).to.be.equal('blue');
-    expect(buyValue).to.be.equal(9500);
+    expect(model).to.be.equal('Honda CG Titan 125');
+    expect(year).to.be.equal(1963);
+    expect(color).to.be.equal('red');
+    expect(buyValue).to.be.equal(3500);
   })
 });
