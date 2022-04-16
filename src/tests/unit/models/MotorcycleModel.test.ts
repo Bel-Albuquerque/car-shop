@@ -42,10 +42,10 @@ describe('testa camada Model MotorcycleModel', () => {
     const returnReadMoto = await motorcycleModel.read();
 
     expect(returnReadMoto).to.have.lengthOf(2);
-    expect(returnReadMoto[0].model).to.be.equal('Uno da Escada')
-    expect(returnReadMoto[1].model).to.be.equal('ferrari')
-    expect(returnReadMoto[0].color).to.be.equal('blue')
-    expect(returnReadMoto[1].color).to.be.equal('red')
+    expect(returnReadMoto[0].model).to.be.equal('Honda CG Titan 125')
+    expect(returnReadMoto[1].model).to.be.equal('Kawasaki Ninja')
+    expect(returnReadMoto[0].color).to.be.equal('red')
+    expect(returnReadMoto[1].color).to.be.equal('green')
   })
 
   it('testa se o método findOne do MotorcycleModel está implementado da maneira correta', async () => {
@@ -53,9 +53,9 @@ describe('testa camada Model MotorcycleModel', () => {
     const { model, year, color, buyValue } = returnReadeOneMoto as returnType
 
     expect(returnReadeOneMoto).to.be.an('object');
-    expect(model).to.be.equal('Fiat Uno');
+    expect(model).to.be.equal('Honda CG Titan 125');
     expect(year).to.be.equal(1963);
-    expect(color).to.be.equal('blue');
+    expect(color).to.be.equal('red');
     expect(buyValue).to.be.equal(3500);
   })
 
@@ -82,10 +82,10 @@ describe('testa camada Model MotorcycleModel', () => {
     const { model, year, color, buyValue } = returnUpdateMoto as returnType
 
     expect(returnUpdateMoto).to.be.an('object');
-    expect(model).to.be.equal('honda fit');
-    expect(year).to.be.equal(2000);
-    expect(color).to.be.equal('blue');
-    expect(buyValue).to.be.equal(9500);
+    expect(model).to.be.equal('Honda CG Titan 125');
+    expect(year).to.be.equal(1963);
+    expect(color).to.be.equal('red');
+    expect(buyValue).to.be.equal(3500);
   })
 });
 
@@ -111,9 +111,9 @@ describe('testa camada Model MotorcycleModel', () => {
     const { model, year, color, buyValue } = mockCar as returnType
 
     expect(mockCar).to.be.an('object');
-    expect(model).to.be.equal('honda fit');
-    expect(year).to.be.equal(2000);
-    expect(color).to.be.equal('blue');
-    expect(buyValue).to.be.equal(9500);
+    expect(model).to.be.equal('Honda CG Titan 125');
+    expect(year).to.be.equal(1963);
+    expect(color).to.be.equal('red');
+    expect(buyValue).to.be.equal(3500);
   })
 });
