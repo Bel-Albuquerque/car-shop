@@ -1,4 +1,4 @@
-import { Schema, model as createModel, Document } from 'mongose';
+import { Schema, model as createModel, Document } from 'mongoose';
 import { Motorcycle } from '../interfaces/MotorcycleInterface';
 import MongoModel from './MongoModel';
 
