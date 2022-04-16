@@ -29,7 +29,7 @@ describe('testa camada Model MotorcycleModel', () => {
   })
 
   it('teste se o método create do MotorcycleModel está implementado da maneira correta', async () => {
-    const returnCreateMoto = await motorcycleModel.create(createMoto);
+    const returnCreateMoto = await motorcycleModel.create(createMoto as Motorcycle);
 
     expect(returnCreateMoto).to.be.an('object');
     expect(returnCreateMoto.model).to.be.equal(createdMoto.model);
@@ -78,7 +78,7 @@ describe('testa camada Model MotorcycleModel', () => {
   })
 
   it('testa se o método update do MotorcycleModel está implementado da maneira correta', async () => {
-    const returnUpdateMoto = await motorcycleModel.update('4edd40c86762e0fb12000003', editedObj);
+    const returnUpdateMoto = await motorcycleModel.update('4edd40c86762e0fb12000003', editedObj as Motorcycle);
     const { model, year, color, buyValue } = returnUpdateMoto as returnType
 
     expect(returnUpdateMoto).to.be.an('object');
